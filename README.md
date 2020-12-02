@@ -26,8 +26,8 @@ julia> Q = collect(partitions(7))
  [2, 1, 1, 1, 1, 1]   
  [1, 1, 1, 1, 1, 1, 1]
  
-julia> c = [BCH_coefficient(q, T=Int128) for q in Q]
-15-element Array{Rational{Int128},1}:
+julia> c = [BCH_coefficient(q) for q in Q]
+15-element Array{Rational{Int64},1}:
   0//1    
   1//30240
  -1//5040 
