@@ -13,6 +13,7 @@ function BCH_coefficient(q::Vector{Int}; Afirst::Bool=true, T::Type{I}=Int) wher
     m = length(q)
     N = sum(q)
     d = BCH_denominator(N, T=I)
+    F = [factorial(I(n)) for n=1:N]
     C = zeros(I, N, N)
     Acurrent = Afirst
     if iseven(m)
@@ -24,22 +25,22 @@ function BCH_coefficient(q::Vector{Int}; Afirst::Bool=true, T::Type{I}=Int) wher
             n += 1
             h = zero(I)
             if i==m
-                h = div(d, factorial(I(n)))
+                h = div(d, F[n])
             elseif Acurrent && i==m-1
-                h = div(d, factorial(I(r))*factorial(I(q[i+1])))
+                h = div(d, F[r]*F[q[i+1]])
             end
             C[1, n] = h
             for k = 2:n-1
                 h = zero(I)
                 for j=1:r
                     if n>j && C[k-1,n-j]!=0
-                        h += div(C[k-1, n-j], factorial(I(j)))
+                        h += div(C[k-1, n-j], F[j])
                     end
                 end                     
                 if Acurrent && i<=m-1
                     for j=1:q[i+1]
                         if n>r+j && C[k-1, n-r-j]!=0
-                            h += div(C[k-1, n-r-j], factorial(I(r))*factorial(I(j)))
+                            h += div(C[k-1, n-r-j], F[r]*F[j])
                         end
                     end
                 end
@@ -58,6 +59,7 @@ function BCH_coefficient(b::Vector{Int}, q::Vector{Int}; T::Type{I}=Int) where I
     @assert m==length(b)
     N = sum(q)
     d = BCH_denominator(N, T=I)
+    F = [factorial(I(n)) for n=1:N]
     S = zeros(Int, m)
     S[m] = 1
     for i = m-1:-1:1
@@ -71,9 +73,9 @@ function BCH_coefficient(b::Vector{Int}, q::Vector{Int}; T::Type{I}=Int) where I
             n += 1
             h = zero(I)
             if m-i+1==S[i]
-                x = factorial(I(r))
+                x = F[r]
                 for s = 1:S[i]-1
-                    x *= factorial(I(q[i+s]))
+                    x *= F[q[i+s]]
                 end
                 h = div(d, x)
             end
@@ -82,19 +84,19 @@ function BCH_coefficient(b::Vector{Int}, q::Vector{Int}; T::Type{I}=Int) where I
                 h = zero(I)
                 for j=1:r
                     if n>j && C[k-1,n-j]!=0
-                        h += div(C[k-1, n-j], factorial(I(j)))
+                        h += div(C[k-1, n-j], F[j])
                     end
                 end                     
-                x = factorial(I(r))
+                x = F[r]
                 t = r
                 for s = 1:S[i]-1
                     if s>=2
                         t += q[i+s-1]
-                        x *= factorial(I(q[i+s-1]))
+                        x *= F[q[i+s-1]]
                     end
                     for j = 1:q[i+s]
                         if n>t+j && C[k-1, n-t-j]!=0
-                            h += div(C[k-1, n-t-j], x*factorial(I(j)))
+                            h += div(C[k-1, n-t-j], x*F[j])
                         end
                     end
                 end
