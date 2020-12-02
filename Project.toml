@@ -1,0 +1,7 @@
+name = "BCH_series"
+uuid = "29aba565-d91b-4777-8c05-fa3bb83c8f3d"
+authors = ["HaraldHofstaetter <hofi@harald-hofstaetter.at>"]
+version = "0.1.0"
+
+[deps]
+Primes = "27ebfcd6-29c5-5fa9-bf4b-fb8fc14df3ae"
