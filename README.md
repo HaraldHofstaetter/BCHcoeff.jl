@@ -1,6 +1,6 @@
 # BCH_series.jl
 
-Efficient algorithms for computing coefficients of the Baker-Campell-Hausdorff series.
+Efficient algorithms for computing coefficients of the Baker-Campbell-Hausdorff series.
 
 ## Example
 
