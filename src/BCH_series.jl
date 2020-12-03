@@ -1,6 +1,6 @@
 module BCH_series
 
-export BCH_denominator, BCH_coefficient
+export BCH_denominator, BCH_coefficient, BCH_extremal_p_valuation
 
 using Primes 
 
@@ -145,6 +145,46 @@ function BCH_coefficient(W::String)
     w = [x for x in W]
     b, e = word2be(w .- minimum(w))
     BCH_coefficient(b, e, T=T)
+end
+
+
+function BCH_extremal_p_valuation(n::Int, p::Int)
+    α = digits(n, base=p)
+    r = floor(Int, log(p, n))
+    l = floor(Int, log(p, sum(α)))
+    if l==0
+        if n<p
+            if n==1
+                return [1]
+            elseif n==2 || isodd(n)
+                return [n-1, 1]
+            else
+                return [n-2, 2]
+            end
+        else
+            k = p^(r-1)*(p-1)
+            return [n-k, k]
+        end
+    elseif l==1
+        h = p-1
+        i = 0
+        β = zeros(Int, r+1)
+        while h>0
+            β[i+1] = min(h, α[i+1])
+            h -= β[i+1]
+            i += 1
+        end
+        k = sum([β[j+1]*p^j for j=0:(i-1)])
+        return [n-k, k]
+    else
+        if p==2 || isodd(n)
+            m = p^l
+        else
+            m = p^l+1
+        end
+        b = vcat([Int[p^j for i=1:α[j+1]] for  j=0:length(α)-1]...)
+        return vcat(sum(b[m:end]), reverse(b[1:m-1]))      
+    end
 end
 
 
