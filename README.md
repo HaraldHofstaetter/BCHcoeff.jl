@@ -2,6 +2,22 @@
 
 Efficient algorithms for computing coefficients of the Baker-Campbell-Hausdorff series.
 
+This Julia package provides functions for computing coefficients <img src="https://latex.codecogs.com/gif.latex?h_w=\mathrm{coeff}(w,H)"> in 
+the Baker-Campbell-Hausdorff series
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?H=\log(e^Ae^B)">
+</p>
+for words <img src="https://latex.codecogs.com/gif.latex?w"> over the alphabet <img src="https://latex.codecogs.com/gif.latex?\{A,B\},">
+or, more generally, in
+<p align="center">
+<img src="https://latex.codecogs.com/gif.latex?H=\log(e^{A_1}{\cdots}e^{A_K})">
+</p>
+ for words <img src="https://latex.codecogs.com/gif.latex?w"> over the alphabet <img src="https://latex.codecogs.com/gif.latex?\{A_1,\dots,A_K\}.">
+ 
+ A detailed description of the basic algorithm can be found in the appendix of
+
+>[1] [H. Hofstätter](http://www.harald-hofstaetter.at), [Smallest common denominators for the homogeneous components of the Baker-Campbell-Hausdorff series](https://arxiv.org/pdf/2012.03818), submitted.  
+
 ## Example
 
 ```julia
