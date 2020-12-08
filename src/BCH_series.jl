@@ -1,6 +1,6 @@
 module BCH_series
 
-export BCH_denominator, BCH_coefficient, BCH_extremal_p_valuation
+export BCH_denominator, BCH_coefficient, BCH_witness
 
 using Primes 
 
@@ -148,7 +148,7 @@ function BCH_coefficient(W::String)
 end
 
 
-function BCH_extremal_p_valuation(n::Int, p::Int)
+function BCH_witness(n::Int, p::Int)
     α = digits(n, base=p)
     r = floor(Int, log(p, n))
     l = floor(Int, log(p, sum(α)))
