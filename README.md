@@ -1,21 +1,19 @@
 # BCH_series.jl
 
-Efficient algorithms for computing coefficients of the Baker-Campbell-Hausdorff series.
-
 This Julia package provides functions for computing coefficients
 <img src="https://render.githubusercontent.com/render/math?math=h_w=\mathrm{coeff}(w,H)">
 in the Baker-Campbell-Hausdorff series
 
 
 <p align="center">
-<img src="https://render.githubusercontent.com/render/math?math=H=\log(e^Ae^B)">
+<img src="https://render.githubusercontent.com/render/math?math=H=\sum_wh_ww=\log(e^Ae^B)">
 </p>
 
 for words <img src="https://render.githubusercontent.com/render/math?math=w"> over the alphabet <img src="https://render.githubusercontent.com/render/math?math=\{A,B\}">,
 or, more generally, in
 
 <p align="center">
-<img src="https://render.githubusercontent.com/render/math?math=H=\log(e^{A_1}{\cdots}e^{A_K})">
+<img src="https://render.githubusercontent.com/render/math?math=H=\sum_wh_ww=\log(e^{A_1}{\cdots}e^{A_K})">
 </p>
 
 for words <img src="https://render.githubusercontent.com/render/math?math=w"> over the alphabet 
