@@ -25,7 +25,7 @@ A detailed description of the basic algorithm can be found in the appendix of
 
 ## Installation
 ```julia
-julia> using Pkg; Pkg.add("BCHcoeff")
+Pkg.add(PackageSpec(url="https://github.com/HaraldHofstaetter/BCHcoeff.jl"))
 ```
 
 ## Example
