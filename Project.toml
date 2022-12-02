@@ -1,4 +1,4 @@
-name = "BCH_series"
+name = "BCHcoeff"
 uuid = "29aba565-d91b-4777-8c05-fa3bb83c8f3d"
 authors = ["HaraldHofstaetter <hofi@harald-hofstaetter.at>"]
 version = "0.1.0"
