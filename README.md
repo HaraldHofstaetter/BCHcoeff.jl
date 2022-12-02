@@ -1,4 +1,4 @@
-# BCH_series.jl
+# BCHcoeff.jl
 
 This Julia package provides functions for computing coefficients
 <img src="https://render.githubusercontent.com/render/math?math=h_w=\mathrm{coeff}(w,H)">
@@ -23,10 +23,15 @@ A detailed description of the basic algorithm can be found in the appendix of
 
 >[1] [H. Hofstätter](http://www.harald-hofstaetter.at), [Smallest common denominators for the homogeneous components of the Baker-Campbell-Hausdorff series](https://arxiv.org/pdf/2012.03818), submitted.  
 
+## Installation
+```julia
+julia> using Pkg; Pkg.add("BCHcoeff")
+```
+
 ## Example
 
 ```julia
-julia> using BCH_series
+julia> using BCHcoeff
 julia> using Combinatorics
 
 julia> Q = collect(partitions(7))
@@ -47,7 +52,7 @@ julia> Q = collect(partitions(7))
  [2, 1, 1, 1, 1, 1]   
  [1, 1, 1, 1, 1, 1, 1]
  
-julia> c = [BCH_coefficient(q) for q in Q]
+julia> c = [bchcoeff(q) for q in Q]
 15-element Array{Rational{Int64},1}:
   0//1    
   1//30240
@@ -65,21 +70,21 @@ julia> c = [BCH_coefficient(q) for q in Q]
   1//840  
  -1//140  
  
- julia> BCH_coefficient([1,1,2,2,3,3,4,4,5,5,6,6,7,7], T=BigInt)
+ julia> bchcoeff([1,1,2,2,3,3,4,4,5,5,6,6,7,7], T=BigInt)
  1225927349791//277060715315634921630893140554547200000000
  
- julia> BCH_coefficient("ABAABBAAABBBAAAABBBBAAAAABBBBBAAAAAABBBBBBAAAAAAABBBBBBB")
+ julia> bchcoeff("ABAABBAAABBBAAAABBBBAAAAABBBBBAAAAAABBBBBBAAAAAAABBBBBBB")
  1225927349791//277060715315634921630893140554547200000000
  
- julia> BCH_coefficient([1,1,2,2,3,3,4,4,5,5,6,6,7,7], T=BigInt, Afirst=false)
+ julia> bchcoeff([1,1,2,2,3,3,4,4,5,5,6,6,7,7], T=BigInt, Afirst=false)
  -1225927349791//277060715315634921630893140554547200000000
  
- julia> BCH_coefficient("BABBAABBBAAABBBBAAAABBBBBAAAAABBBBBBAAAAAABBBBBBBAAAAAAA")
+ julia> bchcoeff("BABBAABBBAAABBBBAAAABBBBBAAAAABBBBBBAAAAAABBBBBBBAAAAAAA")
  -1225927349791//277060715315634921630893140554547200000000
  
- julia> BCH_coefficient([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3], [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7], T=BigInt)
+ julia> bchcoeff([1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3,1,2,3], [1,1,1,2,2,2,3,3,3,4,4,4,5,5,5,6,6,6,7,7,7], T=BigInt)
  -181365590859710868850573//3587775871359251968716509214115480195096319355948556615680000000000
  
- julia> BCH_coefficient("xyzxxyyzzxxxyyyzzzxxxxyyyyzzzzxxxxxyyyyyzzzzzxxxxxxyyyyyyzzzzzzxxxxxxxyyyyyyyzzzzzzz")
+ julia> bchcoeff("xyzxxyyzzxxxyyyzzzxxxxyyyyzzzzxxxxxyyyyyzzzzzxxxxxxyyyyyyzzzzzzxxxxxxxyyyyyyyzzzzzzz")
  -181365590859710868850573//3587775871359251968716509214115480195096319355948556615680000000000
 ```
