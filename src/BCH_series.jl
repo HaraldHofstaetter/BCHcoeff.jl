@@ -1,18 +1,18 @@
-module BCH_series
+module BCHcoeff
 
-export BCH_denominator, BCH_coefficient, BCH_witness
+export bchdenom, bchcoeff, bchwitness
 
 using Primes 
 
-BCH_denominator(n::Int; T::Type{I}=Int)  where I<:Integer = 
+bchdenom(n::Int; T::Type{I}=Int)  where I<:Integer = 
     factorial(I(n))*prod([I(p)^(floor(Int, log(p, sum(digits(n, base=p)))))
         for p in 2:n if isprime(p)])
 
             
-function BCH_coefficient(q::Vector{Int}; Afirst::Bool=true, T::Type{I}=Int) where I<:Integer
+function bchcoeff(q::Vector{Int}; Afirst::Bool=true, T::Type{I}=Int) where I<:Integer
     m = length(q)
     N = sum(q)
-    d = BCH_denominator(N, T=I)
+    d = bchdenom(N, T=I)
     F = [factorial(I(n)) for n=1:N]
     C = zeros(I, N, N)
     Acurrent = Afirst
@@ -54,11 +54,11 @@ function BCH_coefficient(q::Vector{Int}; Afirst::Bool=true, T::Type{I}=Int) wher
 end
 
 
-function BCH_coefficient(b::Vector{Int}, q::Vector{Int}; T::Type{I}=Int) where I<:Integer
+function bchcoeff(b::Vector{Int}, q::Vector{Int}; T::Type{I}=Int) where I<:Integer
     m = length(q)
     @assert m==length(b)
     N = sum(q)
-    d = BCH_denominator(N, T=I)
+    d = bchdenom(N, T=I)
     F = [factorial(I(n)) for n=1:N]
     S = zeros(Int, m)
     S[m] = 1
@@ -136,7 +136,7 @@ function word2be(w::Vector{Int})
 end
 
 
-function BCH_coefficient(W::String)
+function bchcoeff(W::String)
     if length(W) <= 19
         T = Int
     else
@@ -144,11 +144,11 @@ function BCH_coefficient(W::String)
     end
     w = [x for x in W]
     b, e = word2be(w .- minimum(w))
-    BCH_coefficient(b, e, T=T)
+    bchcoeff(b, e, T=T)
 end
 
 
-function BCH_witness(n::Int, p::Int)
+function bchwitness(n::Int, p::Int)
     α = digits(n, base=p)
     r = floor(Int, log(p, n))
     l = floor(Int, log(p, sum(α)))
