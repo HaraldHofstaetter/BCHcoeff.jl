@@ -19,9 +19,10 @@ or, more generally, in
 for words <img src="https://render.githubusercontent.com/render/math?math=w"> over the alphabet 
 <img src="https://render.githubusercontent.com/render/math?math=\{A_1,\dots,A_K\}">.
  
-A detailed description of the basic algorithm can be found in the appendix of
+A detailed description of the basic algorithm can be found in
 
->[1] [H. Hofstätter](http://www.harald-hofstaetter.at), [Smallest common denominators for the homogeneous components of the Baker-Campbell-Hausdorff series](https://arxiv.org/pdf/2012.03818), submitted.  
+>[1] [H. Hofstätter](http://www.harald-hofstaetter.at), [A simple and efficient algorithm for computing the
+Baker-Campbell-Hausdorff series](https://arxiv.org/pdf/2212.01290).  
 
 ## Installation
 ```julia
